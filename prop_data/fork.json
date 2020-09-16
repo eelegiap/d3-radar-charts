@@ -1,0 +1,60 @@
+[
+    {
+        "className": "singular",
+        "axes": [
+            {
+                "axis": "acc (вилку/вилки)",
+                "value": 0.2
+            },
+            {
+                "axis": "nom (вилка/вилки)",
+                "value": 0.1
+            },
+            {
+                "axis": "ins (вилкой/вилками)",
+                "value": 0.7
+            },
+            {
+                "axis": "dat (/)",
+                "value": 0.0
+            },
+            {
+                "axis": "loc (/)",
+                "value": 0.0
+            },
+            {
+                "axis": "gen (/вилок)",
+                "value": 0.0
+            }
+        ]
+    },
+    {
+        "className": "plural",
+        "axes": [
+            {
+                "axis": "acc (вилку/вилки)",
+                "value": 0.2
+            },
+            {
+                "axis": "nom (вилка/вилки)",
+                "value": 0.2
+            },
+            {
+                "axis": "ins (вилкой/вилками)",
+                "value": 0.2
+            },
+            {
+                "axis": "dat (/)",
+                "value": 0.0
+            },
+            {
+                "axis": "loc (/)",
+                "value": 0.0
+            },
+            {
+                "axis": "gen (/вилок)",
+                "value": 0.4
+            }
+        ]
+    }
+]

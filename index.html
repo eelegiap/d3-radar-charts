@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/pure-min.css">
+<link rel="stylesheet" href="src/radar-chart.css">
+<link rel="stylesheet" href="src/index.css">
+
+<head>
+  <script type="text/javascript" src="//d3js.org/d3.v3.js"></script>
+  <script type="text/javascript" src="src/radar-chart.js"></script>
+  <script type="text/javascript" src="src/make-chart.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <title>Case radar charts (by proportion)</title>
+</head>
+
+<body> 
+  <div style="text-align: center">
+  <h1>Radar charts based on case counts from the Russian National Corpus</h1>
+<h3 style="color: #FFD700">Yellow: singular</h3>  
+<h3 style="color: #00a2ff">Blue: plural</h3>
+</div>
+  <br>
+<div class="container">
+  <div class="row" style="text-align: center">
+  <h3></h3>
+  </div>
+
+  <div class="row" style="text-align: center">
+    <div class="col">
+      <h3>Окно (by proportions, sg/pl separate)</h3>
+      <div id="okno_prop"></div>
+    </div>
+    <div class="col">
+      <h3>Окно (by count, sg/pl scaled together)</h3>
+      <div id="okno_count"></div>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: center">
+    <div class="col">
+      <h4>Рубль (logarithmic scale, counts)</h4>
+      <div id="ruble_ct"></div>
+    </div>
+    <div class="col">
+      <h4>Рубль (logarithmic scale, prop.)</h4>
+      <div id="ruble_log"></div>
+    </div>
+    <div class="col">
+      <h4>Рубль (linear scale, prop.)</h4>
+      <div id="ruble_lin"></div>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: center">
+    <div class="col">
+      <h4>Образ (logarithmic scale, COUNT)</h4>
+      <div id="form_log_ct"></div>
+    </div>
+    <div class="col">
+      <h4>Образ (logarithmic scale, PROP)</h4>
+      <div id="form_log"></div>
+    </div>
+    <div class="col">
+      <h4>Образ (linear scale, PROP)</h4>
+      <div id="form_lin"></div>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: center">
+    <div class="col">
+      <h3>Вилка (fork)</h3>
+      <div id="fork"></div>
+    </div>
+    <div class="col">
+      <h3>Ложка (spoon)</h3>
+      <div id="spoon"></div>
+    </div>
+    <div class="col">
+      <h3>Нож (knife)</h3>
+      <div id="knife"></div>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: center">
+    <div class="col">
+      <h3>Вилка (fork, count)</h3>
+      <div id="fork-ct"></div>
+    </div>
+    <div class="col">
+      <h3>Ложка (spoon, count)</h3>
+      <div id="spoon-ct"></div>
+    </div>
+    <div class="col">
+      <h3>Нож (knife, count)</h3>
+      <div id="knife-ct"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // window
+  getJSON('prop_data/window_data.json', function (results) {
+    makeChart(results, 'okno_prop', 500, 500, '20px');
+  })
+  getJSON('count_data/window_data.json', function (results) {
+    makeChart(results, 'okno_count', 500, 500, '20px');
+  })
+  // ruble
+  getJSON('count_data/ruble.json', function (results) {
+    makeChart(results, 'ruble_ct', 300, 300, '12px');
+  })
+  getJSON('prop_data/ruble_log.json', function (results) {
+    makeChart(results, 'ruble_log', 300, 300, '12px');
+  })
+  getJSON('prop_data/ruble_not_log.json', function (results) {
+    makeChart(results, 'ruble_lin', 300, 300, '16px');
+  })
+  // forms
+  getJSON('count_data/form_log.json', function (results) {
+    makeChart(results, 'form_log_ct', 300, 300, '14px');
+  })
+  getJSON('prop_data/form_log.json', function (results) {
+    makeChart(results, 'form_log', 300, 300, '14px');
+  })
+  getJSON('prop_data/form_lin.json', function (results) {
+    makeChart(results, 'form_lin', 300, 300, '14px');
+  })
+  // utensils
+  getJSON('prop_data/fork.json', function (results) {
+    makeChart(results, 'fork', 300, 300, '18px');
+  })
+  getJSON('prop_data/spoon.json', function (results) {
+    makeChart(results, 'spoon', 300, 300, '18px');
+  })
+  getJSON('prop_data/knife.json', function (results) {
+    makeChart(results, 'knife', 300, 300, '18px');
+  })
+  // utensils counts
+  getJSON('count_data/fork.json', function (results) {
+    makeChart(results, 'fork-ct', 300, 300, '13px');
+  })
+  getJSON('count_data/spoon.json', function (results) {
+    makeChart(results, 'spoon-ct', 300, 300, '13px');
+  })
+  getJSON('count_data/knife.json', function (results) {
+    makeChart(results, 'knife-ct', 300, 300, '13px');
+  })
+</script>
+
+</body>

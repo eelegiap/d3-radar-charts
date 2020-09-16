@@ -1,0 +1,27 @@
+body {
+    padding: 10px;
+  }
+
+  .radar-chart .area {
+    fill-opacity: 0.7;
+  }
+
+  .radar-chart.focus .area {
+    fill-opacity: 0.3;
+  }
+
+  .radar-chart.focus .area.focused {
+    fill-opacity: 0.9;
+  }
+
+  .area.singular,
+  .singular .circle {
+    fill: #FFD700;
+    stroke: none;
+  }
+
+  .area.plural,
+  .plural .circle {
+    fill: #00a2ff;
+    stroke: none;
+  }
